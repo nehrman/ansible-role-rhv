@@ -1,6 +1,7 @@
 ---
+customer: ""
 rhv_vmname: ""
-rhv_template: "template-centos7-1"
+rhv_template: "templates-centos7-1"
 rhv_cluster: "DC_France_SAS"
 rhv_stodom: "InfraDomain"
 rhv_vm_memory: "6GiB"
