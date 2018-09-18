@@ -1,0 +1,42 @@
+---
+- name: Ensure VM is present and running
+  ovirt_vms:
+    auth: "{{ ovirt_auth }}"
+    name: "{{ var_rhv_vmname }}"
+    state: running
+    template: "{{ var_rhv_template }}"
+    cluster: "{{ var_rhv_cluster }}"
+    storage_domain: "{{ var_rhv_stodom }}"
+    memory: "{{ var_rhv_vm_memory }}"
+    cpu_cores: "{{ var_rhv_vm_cpucores }}"
+    cpu_sockets: "{{ var_rhv_vm_cpusockets }}"
+    comment: "{{ var_rhv_vm_comment }}"
+    wait: true
+    nics:
+      - name: "{{ var_rhv_vm_nic }}"
+        profile_name: "{{ var_rhv_vm_nic_prof }}"
+    cloud_init:
+      host_name: "{{ var_rhv_vmname }}"
+      user_name: "{{ var_rhv_vm_username }}"
+      root_password: "{{ var_rhv_vm_pwd }}"
+      nic_name: "{{ var_rhv_vm_nic }}"
+      nic_boot_protocol: static
+      nic_ip_address: "{{ var_rhv_vm_ip }}"
+      nic_gateway: "{{ var_rhv_vm_gw }}"
+      nic_netmask: "{{ var_rhv_vm_subnet }}"
+      nic_on_boot: "{{ var_rhv_vm_nic_onboot | default(true) }}"
+      dns_servers: "{{ var_rhv_vm_dns_ip }}"
+      dns_search: "{{ var_rhv_vm_dns_search }}"
+  register: r_deploy_rhv
+
+- name: "Wait Until {{ var_rhv_vmname }} is UP and Running"
+  wait_for_connection:
+    delay: 60
+  delegate_to: localhost
+
+- name: "Add {{ var_rhv_vmname }} to In-Memory Inventory"
+  add_host:
+    name: "{{ var_rhv_vmname }}"
+    groups:
+      - "{{ r_deploy_rhv.vm.comment }}"
+      - just_created
