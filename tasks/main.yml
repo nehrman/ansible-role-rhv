@@ -9,11 +9,11 @@
     state: present
 
 - name: Deploy VM on RHV
-  import_playbook: deploy_rhv_vm.yml
+  include_tasks: deploy_rhv_vm.yml
   when: rhv_action == "deploy"
 
 - name: Destroy VM on RHV
-  import_playbook: destroy_rhv_vm.yml
+  include_tasks: destroy_rhv_vm.yml
   when: rhv_action == "destroy"
 
 - name: Revoke SSO Token
