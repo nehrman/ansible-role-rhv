@@ -34,7 +34,7 @@
     delay: 60
   delegate_to: localhost
 
-= name: "Add Tag {{ rhv_tag }} to {{ rhv_vmname }}"
+- name: "Add Tag {{ rhv_tag }} to {{ rhv_vmname }}"
   ovirt_tags:
     name: "{{ rhv_tag }}"
     vms:
