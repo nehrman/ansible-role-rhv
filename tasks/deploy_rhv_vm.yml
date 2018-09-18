@@ -1,5 +1,5 @@
 ---
-- name: Ensure VM is present and running
+- name: "Ensure {{ rhv_vmname }} VM is present and running"
   ovirt_vms:
     auth: "{{ ovirt_auth }}"
     name: "{{ rhv_vmname }}"
