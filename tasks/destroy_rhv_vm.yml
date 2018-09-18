@@ -1,5 +1,5 @@
 ---
-- name: "Stop and Delete {{ var_rhv_vmname }}"
+- name: "Stop and Delete {{ rhv_vmname }}"
   ovirt_vms:
-    name: "{{ var_rhv_vmname }}"
+    name: "{{ rhv_vmname }}"
     state: absent
