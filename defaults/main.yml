@@ -2,7 +2,7 @@
 customer: ""
 rhv_vmname: ""
 rhv_template: "templates-centos7-1"
-rhv_cluster: "DC_France_SAS"
+rhv_cluster: "Infra_Cluster"
 rhv_stodom: "InfraDomain"
 rhv_vm_memory: "6GiB"
 rhv_vm_cpucores: "2"
