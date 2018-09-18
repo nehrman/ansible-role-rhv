@@ -10,11 +10,11 @@
 
 - name: Deploy VM on RHV
   import_playbook: deploy_rhv_vm.yml
-  when: var_rhv_action == "deploy"
+  when: rhv_action == "deploy"
 
 - name: Destroy VM on RHV
   import_playbook: destroy_rhv_vm.yml
-  when: var_rhv_action == "destroy"
+  when: rhv_action == "destroy"
 
 - name: Revoke SSO Token
   ovirt_auth:
