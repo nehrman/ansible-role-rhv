@@ -46,3 +46,4 @@
     groups:
       - "{{ r_deploy_rhv.vm.comment }}"
       - just_created
+
